@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CS 3741 Project 1</title>
+
+    <script id="vshader" type="x-shader/x-vertex">
+      attribute vec4 vertPos;
+      attribute vec4 vertCol;
+      uniform mat4 projMat;
+      uniform mat4 modMat;
+      varying vec4 fragCol;
+      void main() {
+        gl_Position = projMat * modMat * vertPos;
+        gl_PointSize = 1.0;
+        fragCol = vertCol;
+      }
+    </script>
+
+    <script id="fshader" type="x-shader/x-fragment">
+      precision mediump float;
+      varying vec4 fragCol;
+      void main() {
+        gl_FragColor = fragCol;
+      }
+    </script>
+
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/initShaders.js"></script>
+    <script src="../lib/MV.js"></script>
+    <script src="../js/main.js"></script>
+  </head>
+
+  <body onload="main()">
+    <h1>CS 3741 Project 1</h1>
+    <canvas id="webgl" width="400" height="400" style="border: 1px solid #000000"> Please use a browser that supports the "canvas" tag. </canvas><br />
+    <input type="file" id="chooseFile" />
+  </body>
+</html>
